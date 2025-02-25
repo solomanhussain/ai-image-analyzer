@@ -24,31 +24,56 @@ git clone <repository-url>
 cd ai-image-analyzer
 ```
 
-2. Install required dependencies:
+2. Create and activate a virtual environment:
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+## On Windows:
+venv\Scripts\activate
+## On macOS/Linux:
+source venv/bin/activate
+```
+
+3. Install required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Ensure Ollama is running with LLaVA model:
+4. Ensure Ollama is running with LLaVA model:
 ```bash
 ollama pull llava
 ```
 
 ## Usage
 
-1. Start the application:
+1. Activate virtual environment (if not already activated):
+```bash
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+```
+
+2. Start the application:
 ```bash
 streamlit run Home.py
 ```
 
-2. Access the web interface at `http://localhost:8501`
+3. When finished, deactivate the virtual environment:
+```bash
+deactivate
+```
 
-3. Configure settings:
+4. Access the web interface at `http://localhost:8501`
+
+5. Configure settings:
    - Click on "Settings" in the sidebar
    - Set your Ollama URL (default: http://localhost:11434)
    - Select your model (default: llava)
 
-4. Analyze images:
+6. Analyze images:
    - Navigate to "Image Analyzer" in the sidebar
    - Upload an image (supported formats: JPG, JPEG, PNG)
    - View the generated keywords and analysis
