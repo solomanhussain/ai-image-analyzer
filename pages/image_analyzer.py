@@ -73,7 +73,7 @@ def main():
         layout="wide"
     )
 
-    st.title("🖼️ Image Keyword Generator")
+    st.title("🖼️ AI Image Keyword Generator")
     st.markdown("""
     Upload an image to get a comprehensive list of descriptive keywords using AI analysis.
     The AI will analyze every aspect of your image and provide detailed keywords.
