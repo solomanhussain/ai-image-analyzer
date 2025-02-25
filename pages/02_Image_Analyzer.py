@@ -10,8 +10,14 @@ import requests
 
 def analyze_image(image_path):
     """
-    Analyze image using Ollama's LLaVA model and return the description.
+    Analyze image using configured Ollama model and return the description.
     """
+    # Initialize default settings if not in session state
+    if "ollama_url" not in st.session_state:
+        st.session_state.ollama_url = "http://localhost:11434"
+    if "model_name" not in st.session_state:
+        st.session_state.model_name = "llava"
+
     try:
         # Read and encode image
         with open(image_path, "rb") as f:
@@ -35,11 +41,12 @@ Example format: "Sale 50% off", modern storefront, red signage, glass windows, b
 
 Your response should be a single line of comma-separated keywords with any visible text quoted."""
         
-        # Call Ollama API
+        # Call Ollama API with configured settings
+        api_url = f"{st.session_state.ollama_url}/api/generate"
         response = requests.post(
-            "http://localhost:11434/api/generate",
+            api_url,
             json={
-                "model": "llava",
+                "model": st.session_state.model_name,
                 "prompt": prompt,
                 "images": [base64_image],
                 "stream": False
@@ -78,6 +85,19 @@ def main():
     Upload an image to get a comprehensive list of descriptive keywords using AI analysis.
     The AI will analyze every aspect of your image and provide detailed keywords.
     """)
+
+    # Add configuration link and current settings
+    st.sidebar.title("Settings")
+    if st.sidebar.button("⚙️ Configure Settings"):
+        st.switch_page("pages/01_Settings.py")
+    
+    # Display current configuration
+    if "ollama_url" in st.session_state and "model_name" in st.session_state:
+        st.sidebar.markdown("### Current Settings")
+        st.sidebar.info(f"""
+        - **URL**: {st.session_state.ollama_url}
+        - **Model**: {st.session_state.model_name}
+        """)
 
     # File uploader
     uploaded_file = st.file_uploader(
