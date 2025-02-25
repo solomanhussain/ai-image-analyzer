@@ -19,18 +19,21 @@ def analyze_image(image_path):
             base64_image = base64.b64encode(image_bytes).decode()
 
         # Prepare the prompt to generate clean keyword list
-        prompt = """Analyze this image and provide a comma-separated list of descriptive keywords and phrases. Include all relevant details about:
-- Objects, people, and scenery
-- Colors, lighting, and visual details
-- Style, composition, and artistic elements
-- Mood, atmosphere, and emotions
-- Actions, activities, and movements
-- Setting, location, and context
+        prompt = """Analyze this image and provide a comma-separated list of descriptive keywords and phrases. Pay special attention to:
+- any text or words visible in the image (exactly as written)
+- objects and people in the scene
+- colors, lighting, and visual details
+- setting and environment
+- overall mood and style
 
-Important: Provide ONLY the keywords separated by commas. Do not include category labels or classifications.
-Example format: banana, yellow, glossy, fresh, studio lighting, white background, centered, minimalist
+Important:
+- Include ALL text visible in the image exactly as written
+- Provide ONLY keywords separated by commas
+- Do not include category labels or classifications
 
-Your response should be a single line of comma-separated keywords."""
+Example format: "Sale 50% off", modern storefront, red signage, glass windows, bright lighting, urban setting, busy street
+
+Your response should be a single line of comma-separated keywords with any visible text quoted."""
         
         # Call Ollama API
         response = requests.post(
