@@ -38,7 +38,7 @@ ollama pull llava
 
 1. Start the application:
 ```bash
-streamlit run app.py
+streamlit run Home.py
 ```
 
 2. Access the web interface at `http://localhost:8501`
@@ -57,7 +57,7 @@ streamlit run app.py
 
 ```
 .
-├── app.py                 # Main application entry point
+├── Home.py               # Main application entry point (Home page)
 ├── pages/
 │   ├── 01_Settings.py    # Configuration page
 │   └── 02_Image_Analyzer.py # Image analysis page
