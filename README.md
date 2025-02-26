@@ -20,7 +20,7 @@ A Streamlit application that uses Ollama's LLaVA model to analyze images and gen
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/solomanhussain/ai-image-analyzer.git
 cd ai-image-analyzer
 ```
 
